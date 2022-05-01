@@ -1,7 +1,6 @@
 import 'package:erestaurant/models/euser.dart';
 import 'package:erestaurant/screens/wrapper.dart';
 import 'package:erestaurant/services/auth.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +23,7 @@ class MyApp extends StatelessWidget {
       value: AuthService().fbUsr,
       initialData:
           null, //??? I thought we are going to be listening on our custom user data instance
-      child: MaterialApp(
+      child: const MaterialApp(
         home: Wrapper(),
       ),
     );

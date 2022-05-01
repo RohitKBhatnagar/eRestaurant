@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "904695866738",
+    "project_id": "erestaurant-70210",
+    "storage_bucket": "erestaurant-70210.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:904695866738:android:5f60926cc910eb12d469eb",
+        "android_client_info": {
+          "package_name": "com.suncloudtech.erestaurant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "904695866738-9amc9rj457dbub26jjp73tt3nib2g3ho.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsNwVzNHzcuQMXL74WByP1z2Y25E1ZiGk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "904695866738-9amc9rj457dbub26jjp73tt3nib2g3ho.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

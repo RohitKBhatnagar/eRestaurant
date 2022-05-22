@@ -40,7 +40,19 @@ class MyApp extends StatelessWidget {
 //https://pub.dev/packages/firebase_core/install
 //https://pub.dev/packages/provider/install
 //https://pub.dev/packages/flutter_spinkit/install
+//https://pub.dev/packages/google_sign_in/example
+//https://pub.dev/packages/font_awesome_flutter/example
+
 
 
 //Tutorials - Watch till video list#15 for all authentication videos
 //https://www.youtube.com/watch?v=mtNA1neFNVo&list=PL4cUxeGkcC9j--TKIdkb3ISfRbJeJYQwC&index=16 [This video onwards is user creation]
+//https://www.youtube.com/watch?v=1k-gITZA9CI - Google SignIn
+
+
+//For setting up Google services I received platform errors
+//Solved it by 2 steps
+//Enabled OAuth via credentials tab here - https://console.cloud.google.com/apis/credentials?project=erestaurant-70210
+//Deleted my existing Android simulator and created a new one after installing 'Gogle Play Services' as instructed here - https://developer.android.com/studio/intro/update
+
+//This URL is for FYI - https://console.cloud.google.com/iam-admin/iam?authuser=0&project=erestaurant-70210&pli=1

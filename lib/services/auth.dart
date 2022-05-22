@@ -1,9 +1,12 @@
 import 'package:erestaurant/models/euser.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  //final googleUser = GoogleSignIn().signIn();
+  //late final googleUser;
 
   //Convert FirebaseUser into our custome eUser
   eUser? _userFromFirebaseUser(User? fbaseUsr) {
@@ -47,9 +50,34 @@ class AuthService {
     }
   }
 
+  //Method to sign in and authenticate the Google user
+  Future googleLogin() async {
+    //Display Google SignIn options if multiple users
+    final googleUser = await GoogleSignIn().signIn();
+    if (googleUser == null) return;
+
+    //Authenticate Google user selected
+    final googleAuth = await googleUser.authentication;
+
+    //gCredential will collect the authenticated Google users access token and id for user later for firebase
+    final gCredential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+
+    //Pass the gCredential details to now actually perform the authentication
+    UserCredential usrCred =
+        await FirebaseAuth.instance.signInWithCredential(gCredential);
+    User? fbUser = usrCred.user;
+    return _userFromFirebaseUser(fbUser!); //with null check
+  }
+
   //Sign in with email & password
   Future signInWithEmailAndPassword(String email, String password) async {
     try {
+      if (kDebugMode) {
+        print("Authenticating - $email : $password");
+      }
       /*AuthResult*/ UserCredential result = await _auth
           .signInWithEmailAndPassword(email: email, password: password);
       if (kDebugMode) {
@@ -68,6 +96,9 @@ class AuthService {
   //Register with email & password
   Future registerWithEmailAndPassword(String email, String password) async {
     try {
+      if (kDebugMode) {
+        print("Registering - $email : $password");
+      }
       /*AuthResult*/ UserCredential result = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
       if (kDebugMode) {
@@ -87,6 +118,7 @@ class AuthService {
 
   Future logOut() async {
     try {
+      await GoogleSignIn().signOut();
       return await _auth.signOut();
     } catch (exp) {
       if (kDebugMode) {

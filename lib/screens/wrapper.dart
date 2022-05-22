@@ -22,8 +22,10 @@ class Wrapper extends StatelessWidget {
 
     //Return either Home or Authenticate widget here
     if (myUsr == null) {
-      print('Wrapper.dart:: build(): User needs to be authenticated');
-      return Authenticate();
+      if (kDebugMode) {
+        print('Wrapper.dart:: build(): User needs to be authenticated');
+      }
+      return const Authenticate();
     } else {
       if (kDebugMode) {
         print('Wrapper.dart:: build(): User is already authenticated');

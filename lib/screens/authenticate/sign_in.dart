@@ -1,6 +1,7 @@
 import 'package:erestaurant/services/auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../shared/constants.dart';
 import '../../shared/loading.dart';
@@ -113,6 +114,21 @@ class _SignInState extends State<SignIn> {
                           }
                         },
                       ),
+                      ElevatedButton.icon(
+                          icon: const FaIcon(
+                            FontAwesomeIcons.google,
+                            color: Colors.black,
+                          ),
+                          label: const Text('Sign In with Google'),
+                          onPressed: () async {
+                            dynamic result = await _authSvc.googleLogin();
+                            if (result == null) {
+                              setState(() {
+                                error = 'unable to sign in to Google account';
+                                loading = false;
+                              });
+                            }
+                          }),
                       const SizedBox(
                         height: 12.0,
                       ),

@@ -11,17 +11,17 @@ class Home extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.brown[50],
       appBar: AppBar(
-        title: Text('Employee Registration'),
+        title: const Text('Employee Registration'),
         backgroundColor: Colors.brown[400],
         elevation: 0.0,
         actions: <Widget>[
           /*FlatButton*/ //FlatButton is deprecated and replaced by TextButton - https://docs.flutter.dev/release/breaking-changes/buttons
           TextButton.icon(
-            icon: Icon(
+            icon: const Icon(
               Icons.person,
               color: Colors.black,
             ),
-            label: Text('logout',
+            label: const Text('logout',
                 style: TextStyle(
                     color: Colors.red, fontFamily: 'Verdana', fontSize: 16)),
             onPressed: () async {

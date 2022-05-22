@@ -23,7 +23,7 @@ class GoogleSignInProvider extends ChangeNotifier {
     final googleAuth = await googleUser.authentication;
 
     //gCredential will collect the authenticated Google users access token and id for user later for firebase
-    final gCredential = await GoogleAuthProvider.credential(
+    final gCredential = GoogleAuthProvider.credential(
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
     );

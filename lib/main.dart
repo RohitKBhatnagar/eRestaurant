@@ -53,6 +53,6 @@ class MyApp extends StatelessWidget {
 //For setting up Google services I received platform errors
 //Solved it by 2 steps
 //Enabled OAuth via credentials tab here - https://console.cloud.google.com/apis/credentials?project=erestaurant-70210
-//Deleted my existing Android simulator and created a new one after installing 'Gogle Play Services' as instructed here - https://developer.android.com/studio/intro/update
+//Deleted my existing Android simulator and created a new one after installing 'Google Play Services' as instructed here - https://developer.android.com/studio/intro/update
 
 //This URL is for FYI - https://console.cloud.google.com/iam-admin/iam?authuser=0&project=erestaurant-70210&pli=1

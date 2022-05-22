@@ -66,8 +66,18 @@ class _SignInState extends State<SignIn> {
                       TextFormField(
                           decoration:
                               textDecoration.copyWith(hintText: 'eMail'),
-                          validator: (val) =>
-                              val!.isEmpty ? 'Enter an email' : null,
+                          //validator: (val) =>
+                          //val!.isEmpty ? 'Enter an email' : null,
+                          //Adding a REGEX to see if email provided is properly typed - https://medium.com/@anusha.btech.2018/firebase-authentication-with-email-and-password-in-flutter-227d3bf62322
+                          validator: (val) {
+                            if (RegExp(
+                                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                .hasMatch(val!)) {
+                              return null;
+                            } else {
+                              return 'Enter an email';
+                            }
+                          },
                           onChanged: (val) {
                             setState(() => email = val);
                           }),
@@ -88,7 +98,6 @@ class _SignInState extends State<SignIn> {
                       //Sign In Button
                       const SizedBox(height: 20.0),
                       ElevatedButton(
-                        child: const Text('Sign In'),
                         style: ElevatedButton.styleFrom(
                             primary: Colors.pink[400],
                             textStyle: const TextStyle(color: Colors.black)),
@@ -113,6 +122,7 @@ class _SignInState extends State<SignIn> {
                             }
                           }
                         },
+                        child: const Text('Sign In'),
                       ),
                       ElevatedButton.icon(
                           icon: const FaIcon(

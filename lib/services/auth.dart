@@ -12,6 +12,11 @@ class AuthService {
   eUser? _userFromFirebaseUser(User? fbaseUsr) {
     //// ignore: unnecessary_null_comparison
     //return fbaseUsr != null ? eUser(sUid: fbaseUsr.uid) : null;
+    /** 
+    //Getting errors whenever we use android emulator and while email password login option will work, once I do google authentication we are no longer able to sign in with email and password. We are egtting this dumped in our debug-console "Ignoring header X-Firebase-Locale because its value was null.". Hence as per documentation here - https://firebase.google.com/docs/auth/android/start checking if any user is already logged in!
+    //fbaseUsr = _auth.currentUser;
+    ** Apparently this was happenning because a user who had an email entered as 'jhony23@gmail.com' and registered with email and password when tries to use google sign in using same email gets overwritten in the firebase db with 'google' as provider thus making email:password authentication meaningless.
+    **/
     //https://medium.com/@lumeilin301/flutter-firebase-app-tutorial-part-4-custom-model-in-flutter-app-1ec618ed4686
     if (fbaseUsr != null) {
       return eUser(sUid: fbaseUsr.uid);

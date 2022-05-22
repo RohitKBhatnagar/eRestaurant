@@ -43,7 +43,7 @@ class _RegisterState extends State<Register> {
                     color: Colors.black,
                   ),
                   label: const Text('Sign In',
-                      style: const TextStyle(
+                      style: TextStyle(
                           color: Colors.black,
                           fontFamily: 'Verdana',
                           fontSize: 16)),
@@ -99,7 +99,6 @@ class _RegisterState extends State<Register> {
                       //Sign In Button
                       const SizedBox(height: 20.0),
                       ElevatedButton(
-                        child: const Text('Register'),
                         style: ElevatedButton.styleFrom(
                             primary: Colors.deepOrange[400],
                             textStyle: const TextStyle(color: Colors.black)),
@@ -122,6 +121,7 @@ class _RegisterState extends State<Register> {
                             }
                           }
                         },
+                        child: const Text('Register'),
                       ),
                       const SizedBox(
                         height: 12.0,

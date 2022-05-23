@@ -56,3 +56,9 @@ class MyApp extends StatelessWidget {
 //Deleted my existing Android simulator and created a new one after installing 'Google Play Services' as instructed here - https://developer.android.com/studio/intro/update
 
 //This URL is for FYI - https://console.cloud.google.com/iam-admin/iam?authuser=0&project=erestaurant-70210&pli=1
+
+
+//Some extremely good reference
+//Using Firebase Authentication - https://firebase.flutter.dev/docs/auth/usage/
+//Video Tutorial iOS Google Sign In - https://www.youtube.com/watch?v=xuvBFjNOl5M
+//Flutter POD Run issues - https://phongyewtong.medium.com/how-to-fix-flutter-stuck-at-running-pod-install-when-run-578ad867774#:~:text=found%20for%20method-,Solution,directory%20and%20run%20Pod%20install%20.

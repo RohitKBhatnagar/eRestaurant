@@ -9,8 +9,8 @@ class DatabaseService {
       FirebaseFirestore.instance.collection('employees');
 
   //HELP - https://firebase.flutter.dev/docs/firestore/usage/#adding-documents
-  Future updateEmpData(
-      String firstName, String lastName, String eMail, String phoneNo) async {
+  Future updateEmpData(String? firstName, String? lastName, String? eMail,
+      String? phoneNo) async {
     return employeeCollection
         .doc(uid)
         .set({

@@ -1,4 +1,5 @@
 import 'package:erestaurant/models/euser.dart';
+import 'package:erestaurant/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -74,7 +75,12 @@ class AuthService {
     UserCredential usrCred =
         await FirebaseAuth.instance.signInWithCredential(gCredential);
     User? fbUser = usrCred.user;
-    return _userFromFirebaseUser(fbUser!); //with null check
+
+    //Adding functionality to add user details directly onto the the Firebase database
+    await DatabaseService(uid: fbUser!.uid).updateEmpData(fbUser.displayName,
+        '', fbUser.email, fbUser.phoneNumber); //Dummy entry for user
+
+    return _userFromFirebaseUser(fbUser); //with null check
   }
 
   //Sign in with email & password
@@ -110,7 +116,15 @@ class AuthService {
         print(result);
       }
       User? fbUser = result.user;
-      return _userFromFirebaseUser(fbUser!); //with null check
+
+      //Adding functionality to add user details directly onto the the Firebase database
+      await DatabaseService(uid: fbUser!.uid).updateEmpData(
+          email.substring(0, email.lastIndexOf('@')),
+          '',
+          email,
+          ''); //Dummy entry for user
+
+      return _userFromFirebaseUser(fbUser); //with null check
     } catch (e) {
       if (kDebugMode) {
         print(e.toString());

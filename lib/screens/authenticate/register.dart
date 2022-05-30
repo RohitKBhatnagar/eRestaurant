@@ -154,11 +154,11 @@ class _RegisterState extends State<Register> {
                           ),
                           label: const Text('Register via Google'),
                           onPressed: () async {
-                            dynamic result = await _authSvc.googleLogin();
+                            dynamic result = await _authSvc.registerViaGoogle();
                             if (result == null) {
                               setState(() {
                                 error =
-                                    'unable to register with your Google account';
+                                    'Unable to register with your Google account';
                                 loading = false;
                               });
                             }

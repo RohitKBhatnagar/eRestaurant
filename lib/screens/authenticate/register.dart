@@ -21,7 +21,9 @@ class _RegisterState extends State<Register> {
   bool loading = false;
 
   // Text Field State
+  String displayName = '';
   String email = '';
+  String phoneNo = '';
   String password = '';
   String error = '';
 
@@ -60,6 +62,26 @@ class _RegisterState extends State<Register> {
                   key: _formKey,
                   child: Column(
                     children: <Widget>[
+                      //Display Name
+                      const SizedBox(height: 20.0),
+                      TextFormField(
+                          decoration: textDecoration.copyWith(hintText: 'Name'),
+                          validator: (val) =>
+                              val!.isEmpty ? 'What\'s your name?' : null,
+                          onChanged: (val) {
+                            setState(() => displayName = val);
+                          }),
+                      //Phone Number
+                      const SizedBox(height: 20.0),
+                      TextFormField(
+                          decoration:
+                              textDecoration.copyWith(hintText: 'Phone Number'),
+                          validator: (val) => val!.isEmpty
+                              ? 'Phone number to reach you at?'
+                              : null,
+                          onChanged: (val) {
+                            setState(() => phoneNo = val);
+                          }),
                       //User Name
                       const SizedBox(height: 20.0),
                       TextFormField(
@@ -111,8 +133,9 @@ class _RegisterState extends State<Register> {
                               print(password);
                             }
                             setState(() => loading = true);
-                            dynamic result = await _authSvc
-                                .registerWithEmailAndPassword(email, password);
+                            dynamic result = await _authSvc.registerEmployee(
+                                displayName, email, phoneNo, password);
+                            //.registerWithEmailAndPassword(email, password);
                             if (result == null) {
                               setState(() {
                                 error = 'please provide valid email';

@@ -78,7 +78,7 @@ class AuthService {
 
     //Adding functionality to add user details directly onto the the Firebase database
     await DatabaseService(uid: fbUser!.uid).updateEmpData(fbUser.displayName,
-        '', fbUser.email, fbUser.phoneNumber); //Dummy entry for user
+        fbUser.email, fbUser.phoneNumber); //Dummy entry for user
 
     return _userFromFirebaseUser(fbUser); //with null check
   }
@@ -120,9 +120,38 @@ class AuthService {
       //Adding functionality to add user details directly onto the the Firebase database
       await DatabaseService(uid: fbUser!.uid).updateEmpData(
           email.substring(0, email.lastIndexOf('@')),
-          '',
           email,
           ''); //Dummy entry for user
+
+      return _userFromFirebaseUser(fbUser); //with null check
+    } catch (e) {
+      if (kDebugMode) {
+        print(e.toString());
+      }
+      return null;
+    }
+  }
+
+  //Register with email & password
+  Future registerEmployee(
+      String displayName, String email, String telNo, String password) async {
+    try {
+      if (kDebugMode) {
+        print("Registering $displayName with $telNo - $email : $password");
+      }
+      /*AuthResult*/ UserCredential result = await _auth
+          .createUserWithEmailAndPassword(email: email, password: password);
+      if (kDebugMode) {
+        print(result);
+      }
+      User? fbUser = result.user;
+
+      //Adding functionality to add user details directly onto the the Firebase database
+      await DatabaseService(uid: fbUser!.uid).registerEmpData(
+          //email.substring(0, email.lastIndexOf('@')),
+          displayName,
+          email,
+          telNo); //Dummy entry for user
 
       return _userFromFirebaseUser(fbUser); //with null check
     } catch (e) {

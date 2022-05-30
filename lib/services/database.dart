@@ -32,4 +32,9 @@ class DatabaseService {
         .catchError(
             (error) => print("failed to update employee details - $error"));
   }
+
+  // Gets employee stream
+  Stream<QuerySnapshot> get employees {
+    return employeeCollection.snapshots();
+  }
 }

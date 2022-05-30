@@ -162,6 +162,33 @@ class AuthService {
     }
   }
 
+  //Register via Google sign in and pulling out neccessary user details
+  Future registerViaGoogle() async {
+    //Display Google SignIn options if multiple users
+    final googleUser = await GoogleSignIn().signIn();
+    if (googleUser == null) return;
+
+    //Authenticate Google user selected
+    final googleAuth = await googleUser.authentication;
+
+    //gCredential will collect the authenticated Google users access token and id for user later for firebase
+    final gCredential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+
+    //Pass the gCredential details to now actually perform the authentication
+    UserCredential usrCred =
+        await FirebaseAuth.instance.signInWithCredential(gCredential);
+    User? fbUser = usrCred.user;
+
+    //Adding functionality to add user details directly onto the the Firebase database
+    await DatabaseService(uid: fbUser!.uid).registerEmpData(fbUser.displayName,
+        fbUser.email, fbUser.phoneNumber); //Dummy entry for user
+
+    return _userFromFirebaseUser(fbUser); //with null check
+  }
+
   //Sign out
 
   Future logOut() async {

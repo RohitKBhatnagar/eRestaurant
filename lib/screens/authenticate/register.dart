@@ -2,6 +2,7 @@ import 'package:erestaurant/shared/constants.dart';
 import 'package:erestaurant/shared/loading.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../services/auth.dart';
 
@@ -146,6 +147,22 @@ class _RegisterState extends State<Register> {
                         },
                         child: const Text('Register'),
                       ),
+                      ElevatedButton.icon(
+                          icon: const FaIcon(
+                            FontAwesomeIcons.google,
+                            color: Colors.black,
+                          ),
+                          label: const Text('Register via Google'),
+                          onPressed: () async {
+                            dynamic result = await _authSvc.googleLogin();
+                            if (result == null) {
+                              setState(() {
+                                error =
+                                    'unable to register with your Google account';
+                                loading = false;
+                              });
+                            }
+                          }),
                       const SizedBox(
                         height: 12.0,
                       ),

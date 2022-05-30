@@ -62,3 +62,11 @@ class MyApp extends StatelessWidget {
 //Using Firebase Authentication - https://firebase.flutter.dev/docs/auth/usage/
 //Video Tutorial iOS Google Sign In - https://www.youtube.com/watch?v=xuvBFjNOl5M
 //Flutter POD Run issues - https://phongyewtong.medium.com/how-to-fix-flutter-stuck-at-running-pod-install-when-run-578ad867774#:~:text=found%20for%20method-,Solution,directory%20and%20run%20Pod%20install%20.
+
+//In order to connect your physical iPhone to the Flutter runtime on say MacBook
+//reference these URL(s) for Developer Account and Signing Certificate Details
+//Apple App Signing - https://help.apple.com/xcode/mac/current/#/dev3a05256b8
+//Quick Tutorial for iPhone to run Flutter runtime - https://medium.com/front-end-weekly/how-to-test-your-flutter-ios-app-on-your-ios-device-75924bfd75a8
+//Signing and capabilities Workflow - https://help.apple.com/xcode/mac/current/#/dev60b6fbbc7
+//Add your AppleID to XCode - https://help.apple.com/xcode/mac/current/#/devaf282080a
+//Running and iPhone App from XCode - https://help.apple.com/xcode/mac/current/#/dev5a825a1ca

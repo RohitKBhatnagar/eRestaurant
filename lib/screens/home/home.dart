@@ -1,4 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart'; //QuerySnapshot call has been transferred to services/database.dart
+import 'package:erestaurant/models/employee.dart';
 import 'package:erestaurant/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:erestaurant/services/database.dart';
@@ -13,9 +14,11 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<QuerySnapshot?>.value(
+    return StreamProvider<List<Employee?>>.value(
+      //return StreamProvider<QuerySnapshot?>.value(
       value: DatabaseService(uid: '').employees,
-      initialData: null,
+      //initialData: null,
+      initialData: const <Employee>[],
       child: Scaffold(
         backgroundColor: Colors.brown[50],
         appBar: AppBar(
@@ -38,7 +41,7 @@ class Home extends StatelessWidget {
             )
           ],
         ),
-        body: EmployeesList(),
+        body: const EmployeesList(),
       ),
     );
     /*Container(

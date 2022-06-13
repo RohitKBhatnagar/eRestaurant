@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:erestaurant/models/employee.dart';
+import 'package:flutter/foundation.dart';
 
 class DatabaseService {
   final String uid;
@@ -33,8 +35,41 @@ class DatabaseService {
             (error) => print("failed to update employee details - $error"));
   }
 
+  // employee list from snapshot - https://firebase.flutter.dev/docs/firestore/usage/#querysnapshot
+  List<Employee?> _empListFromSnapshot(QuerySnapshot snapshot) {
+    /* return snapshot.docs
+        .map((doc) => Employee.fromJson(doc.data().toString()))
+        .toList(); */
+    //https://groups.google.com/g/flutter-dev/c/lquU5iaQjiw
+
+    return snapshot.docs.map((doc) {
+      if (kDebugMode) {
+        print(doc);
+      }
+      try {
+        return Employee.fromJson(doc.data() /*.toString()*/);
+      } catch (e) {
+        if (kDebugMode) {
+          print(e);
+        }
+        return null;
+      }
+    }).toList();
+  }
+
   // Gets employee stream
-  Stream<QuerySnapshot> get employees {
+  /* Stream<QuerySnapshot> get employees {
     return employeeCollection.snapshots();
+  } */
+
+  // Gets employee stream
+  /* Stream<List<Employee>> get employees {
+    return employeeCollection.snapshots().map((list) =>
+        list.docs.map((e) => Employee.fromJson(e.toString())).toList());
+        //https://www.androidbugfix.com/2021/12/flutter-firestore-documentsnapshot-to.html
+  } */
+
+  Stream<List<Employee?>> get employees {
+    return employeeCollection.snapshots().map(_empListFromSnapshot);
   }
 }

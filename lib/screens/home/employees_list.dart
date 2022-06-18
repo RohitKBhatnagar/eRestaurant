@@ -1,3 +1,4 @@
+import 'package:erestaurant/screens/home/employee_tile.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 //import 'package:cloud_firestore/cloud_firestore.dart';
@@ -28,6 +29,7 @@ class _EmployeesListState extends State<EmployeesList> {
 
   Widget build(BuildContext context) {
     final employees = Provider.of<List<Employee?>>(context);
+    //Print whatever we have in the firestore DB
     employees.forEach((emp) {
       if (kDebugMode) {
         print(emp?.display_name);
@@ -35,6 +37,12 @@ class _EmployeesListState extends State<EmployeesList> {
         print(emp?.Tel);
       }
     });
-    return Container();
+    //return Container();
+    return ListView.builder(
+        itemCount: employees.length,
+        itemBuilder: (context, index) {
+          //return EmployeeTile(employee: employees[index]);
+          return EmployeeTile(employee: employees!.elementAt(index));
+        });
   }
 }

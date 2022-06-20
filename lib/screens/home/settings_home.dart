@@ -27,6 +27,7 @@ class _SettingsFormState extends State<SettingsForm> {
   bool? _seekingJob;
   String? _currentExp;
   String? _currentEmployer;
+  int? _strength;
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +53,9 @@ class _SettingsFormState extends State<SettingsForm> {
           ),
           //Drop Down element for years of experience
           DropdownButtonFormField(
+            decoration:
+                textDecoration, //Same as input text field to have consistency
+            //value: _currentExp ?? '0', //Older style no longer required
             items: experience.map((exp) {
               return DropdownMenuItem(
                 value: exp,
@@ -61,7 +65,18 @@ class _SettingsFormState extends State<SettingsForm> {
             onChanged: (value) =>
                 setState(() => _currentExp = value as String?),
           ),
-          // Slider option
+          // Slider option - https://blog.logrocket.com/flutter-slider-widgets-deep-dive-with-examples/
+          Slider(
+              label: '$_strength',
+              activeColor: Colors.green[_strength ?? 100],
+              inactiveColor: Colors.red[_strength ?? 100],
+              thumbColor: Colors.orange,
+              value: (_strength ?? 100).toDouble(),
+              /*_strength as double,*/
+              min: 100,
+              max: 900,
+              divisions: 8,
+              onChanged: (val) => setState(() => _strength = val.round())),
           //Button
           ElevatedButton(
             style: ButtonStyle(
@@ -85,6 +100,7 @@ class _SettingsFormState extends State<SettingsForm> {
                 print(_currentExp);
                 print(_seekingJob);
                 print(_currentEmployer);
+                print(_strength);
               }
             },
           ),
